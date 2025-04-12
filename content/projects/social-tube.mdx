@@ -1,0 +1,209 @@
+---
+  title: SocialTube
+  summary: A feature-rich backend-heavy application mimicking YouTube and Twitter features built with Node.js and Express.
+  author: "Ayush Raj"
+  publishedAt: "2025-04-10"
+  image: "/images/socialtube.png"
+---
+
+## 🎬 What is SocialTube's Backend?
+
+**SocialTube Backend** is a full-featured Node.js + Express server designed to power a platform blending the best of YouTube and Twitter. It handles user authentication, video and tweet management, playlists, subscriptions, likes, and more.
+
+🔗 [API Documentation](https://documenter.getpostman.com/view/43220209/2sAYkGJdwu)  
+📊 [Model Architecture](https://app.eraser.io/workspace/YtPqZ1VogxGy1jzIDkzj)  
+🌐 **Live:** [social-tube-frontend.vercel.app](https://social-tube-frontend.vercel.app/)  
+
+## 🔧 Key Features
+
+### 👤 User Management
+- Register, login, logout, reset password
+- Profile updates including avatar and cover image
+- Watch history tracking
+
+### 📹 Video Management
+- Upload, edit, delete, publish/unpublish videos
+- Search, sort, paginate
+
+### 🐦 Tweet Management
+- Create, update, delete tweets
+- Fetch tweets by user
+
+### 🔔 Subscriptions
+- Subscribe to channels
+- View subscriber & subscription lists
+
+### 📂 Playlist Management
+- Create, update, delete playlists
+- Add/remove videos in playlists
+
+### 👍 Like System
+- Like/unlike videos, tweets, comments
+- View liked videos
+
+### 💬 Commenting System
+- CRUD for video comments
+
+### 📊 Dashboard
+- View statistics: views, likes, subs, videos
+- List all uploads
+
+### ❤️ Health Check
+- Dedicated endpoint for uptime verification
+
+## 🧰 Tech Stack
+
+- **Node.js & Express** for API and server logic
+- **MongoDB** for data storage
+- **Cloudinary** for media uploads
+- **JWT** for authentication
+- **CORS + Helmet** for security
+- **Render** for deployment
+
+## 🚀 Getting Started
+
+1. **Clone the repository:**
+```bash
+git clone https://github.com/Ayush-Raj-0304/socialTube-backend.git
+```
+
+2. **Install dependencies:**
+```bash
+cd socialTube-backend
+npm install
+```
+
+3. **Set up environment variables:**
+Use `.env.sample` to create your `.env` file
+
+4. **Run the server:**
+```bash
+npm run dev
+```
+
+# 🚀 SocialTube Frontend & Routing Overview
+
+This guide provides a structured overview of the **SocialTube frontend**, developed using **React** and **Vite**. We’ll cover key UI components, route structures, and admin features integrated into this video-sharing platform.
+
+---
+
+## 📦 Project Structure Highlights
+
+**Key tools & libraries used:**
+- **React** + **Vite**
+- **React Router v6**
+- **Redux Toolkit**
+- **Tailwind CSS**
+- **Hot-toast** for notifications
+- **Framer Motion for animations and transitions ✨
+
+---
+
+## 🧩 Components Overview
+
+### ✅ `InfiniteScroll`
+Detects when user reaches bottom and triggers fetch if `hasNextPage` is true.
+
+```tsx
+<InfiniteScroll fetchMore={loadMoreVideos} hasNextPage={hasMore}>
+  {videoList.map((vid) => <VideoCard key={vid.id} {...vid} />)}
+</InfiniteScroll>
+```
+
+### ✅ `HeaderSection`
+Shows greeting and upload button:
+
+```tsx
+<HeaderSection username="Ayush" setPopUp={setPopUpState} />
+```
+
+### ✅ `StatsSection`
+Stats panel showing total videos, views, subscribers, and likes:
+
+```tsx
+<StatsSection dashboard={channelStats} />
+```
+
+### ✅ `VideoTable`
+Interactive video list with edit, delete, and publish toggles:
+
+```tsx
+<VideoTable
+  videos={myUploads}
+  setPopUp={setPopUpState}
+  setVideoDetails={setCurrentVideo}
+/>
+```
+
+---
+
+## 🧭 Routing Structure
+Implemented using `react-router-dom` with nested and protected routes. `AuthLayout` ensures access control.
+
+```tsx
+<Routes>
+  <Route path="/" element={<Layout />}>
+    <Route path="" element={<AuthLayout authentication={false}><HomePage /></AuthLayout>} />
+    <Route path="search/:query" element={<SearchVideos />} />
+    <Route path="channel/:username" element={<Channel />}>
+      <Route path="videos" element={<ChannelVideos />} />
+      <Route path="playlists" element={<ChannelPlaylist />} />
+      <Route path="tweets" element={<ChannelTweets />} />
+      <Route path="subscribed" element={<ChannelSubscribers />} />
+    </Route>
+    <Route path="history" element={<History />} />
+    <Route path="liked-videos" element={<LikedVideos />} />
+    <Route path="subscriptions" element={<MySubscriptions />} />
+    <Route path="edit" element={<EditChannel />}>
+      <Route path="personalInfo" element={<EditPersonalInfo />} />
+      <Route path="password" element={<ChangePassword />} />
+    </Route>
+  </Route>
+  <Route path="login" element={<Login />} />
+  <Route path="signup" element={<SignUp />} />
+  <Route path="watch/:videoId" element={<VideoDetail />} />
+  <Route path="collections" element={<AdminDashboard />} />
+  <Route path="terms&conditions" element={<TermsAndConditions />} />
+</Routes>
+```
+
+---
+
+## 🎯 Backend Summary
+
+**GitHub Repo:** [SocialTube Backend](https://github.com/Ayush-Raj-0304/socialTube-backend)
+
+### Features Supported:
+- 🔐 **User Management:** login, profile, history
+- 📹 **Video CRUD:** upload, publish, like, search
+- 💬 **Comments & Tweets:** post, update, delete
+- 📚 **Playlists:** create, manage, view
+- ❤️ **Likes:** for videos, comments, tweets
+- 📊 **Dashboard:** views, subscribers, likes
+- ✅ **Health Check Endpoint**
+
+### Technologies Used:
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB
+- **Media Storage:** Cloudinary
+
+### Local Setup
+```bash
+git clone https://github.com/Ayush-Raj-0304/socialTube-backend.git
+cd socialTube-backend
+npm install
+cp .env.sample .env # and fill required fields
+npm run dev
+
+```
+
+---
+
+## 💡 Conclusion
+With a clean UI, smart route handling, and powerful backend, SocialTube delivers a robust experience for video content sharing and interaction. The combination of YouTube-style video management and Twitter-like tweets offers a fresh social media hybrid.
+
+Feel free to explore the code, contribute, or deploy your own version!
+
+---
+
+Stay tuned for more deep dives into SocialTube’s internal components and UI/UX engineering decisions.

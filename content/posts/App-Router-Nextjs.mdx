@@ -1,0 +1,159 @@
+---
+  title: Understanding the App Router in Next.js 15
+  summary: Learn about the modern App Router in Next.js 15 and how it revolutionizes routing, layouts, and server components for your web apps.
+  author: 'Ayush Raj'
+  publishedAt: '2025-04-10'
+  image: '/images/app-router.avif'
+---
+
+## 🚪 What is the App Router?
+
+The **App Router** in Next.js 15 is a powerful and flexible way to define your application’s structure. Introduced as a major upgrade over the Pages Router, the App Router introduces concepts like nested layouts, server components, and loading/error states natively.
+
+It lives under the `app/` directory and enables a more modular and scalable architecture.
+
+```bash
+my-app/
+  └── app/
+      ├── page.tsx         // Root page
+      ├── layout.tsx       // Shared layout
+      ├── loading.tsx      // Loading UI
+      └── error.tsx        // Error boundary
+```
+
+## ✨ Key Features
+
+- **File-system-based routing** (like before, but more powerful)
+- **Nested layouts**: Build reusable UI shells
+- **Server and Client components**: Out of the box
+- **Streaming**: Native support for React 18 features
+- **Data fetching** with caching, revalidation, and loading states
+
+## 🧠 Layouts and Pages
+
+Each folder can have its own `layout.tsx` file that wraps all nested routes, making it easy to share headers, footers, sidebars, etc.
+
+```tsx
+// app/layout.tsx
+export default function RootLayout({ children }) {
+  return (
+    <html>
+      <body>
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
+    </html>
+  );
+}
+```
+
+Pages are rendered via `page.tsx` inside each route:
+
+```tsx
+// app/about/page.tsx
+export default function AboutPage() {
+  return <h1>About Us</h1>;
+}
+```
+
+## ⏳ Loading and Error States
+
+You can handle route-based loading and error states without any custom logic.
+
+```tsx
+// app/about/loading.tsx
+export default function Loading() {
+  return <p>Loading...</p>;
+}
+
+// app/about/error.tsx
+export default function Error({ error }) {
+  return <p>Oops! {error.message}</p>;
+}
+```
+
+## 🔄 Data Fetching
+
+App Router supports:
+
+- `fetch()` with caching
+- `revalidate` for ISR (Incremental Static Regeneration)
+- `generateMetadata()` for SEO
+
+```tsx
+// app/products/page.tsx
+export async function generateMetadata() {
+  return { title: 'Products' };
+}
+
+export default async function ProductPage() {
+  const res = await fetch('https://api.example.com/products', {
+    next: { revalidate: 60 }
+  });
+  const products = await res.json();
+
+  return <ProductList products={products} />;
+}
+```
+
+## 🧩 Server & Client Components
+
+Next.js 15 uses **React Server Components** by default. Use `"use client"` to opt into Client Components.
+
+```tsx
+// app/profile/page.tsx
+"use client";
+
+export default function Profile() {
+  return <button onClick={() => alert('Clicked!')}>Click me</button>;
+}
+```
+
+## 📂 Routing Examples
+
+```bash
+app/
+  ├── dashboard/
+  │   ├── layout.tsx      // Dashboard shell
+  │   ├── page.tsx        // Dashboard home
+  │   └── analytics/
+  │       └── page.tsx    // /dashboard/analytics
+```
+
+- `/dashboard` → Dashboard page
+- `/dashboard/analytics` → Nested route within dashboard layout
+
+## 🚀 Migration Tips
+
+Coming from Pages Router?
+
+- Move files to `app/` directory
+- Replace `_app.tsx` and `_document.tsx` with `layout.tsx`
+- Use `<Link />` and `<Image />` like before
+- Prefer Server Components for performance
+
+## ✅ When to Use App Router
+
+Use App Router when:
+
+- You need advanced routing with nested layouts
+- You want the latest React Server Component benefits
+- You need built-in support for streaming, caching, and error handling
+
+## 🧭 Conclusion
+
+The **App Router** in Next.js 15 simplifies complex routing patterns and modernizes the framework’s core features. With layouts, streaming, and server components built in, it offers an unparalleled developer experience for building large-scale apps.
+
+If you're starting a new Next.js project in 2025, the App Router is the way to go.
+
+## 📚 Further Reading
+
+- [App Router Documentation](https://nextjs.org/docs/app)
+- [Pages vs App Router](https://nextjs.org/docs/upgrade-guide)
+- [React Server Components](https://react.dev/reference/react-server)
+
+---
+
+Thanks for reading! Feel free to share this post or [connect with me on LinkedIn](https://www.linkedin.com/in/ayush-raj-50779024a/) for more insights! ✌️
+

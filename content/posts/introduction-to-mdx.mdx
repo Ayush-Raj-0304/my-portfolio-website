@@ -1,0 +1,125 @@
+---
+  title: Introduction to MDX
+  summary: MDX is a powerful tool that allows you to write JSX in your Markdown files. This post will introduce you to the basics of MDX and how it empowers modern content-driven development.
+  author: 'Ayush Raj'
+  publishedAt: '2025-04-04'
+  image: '/images/MDX.png'
+---
+
+## 📘 What is MDX?
+
+MDX (Markdown for the component era) is a file format that lets you seamlessly write JSX within Markdown files. It combines the simplicity of Markdown with the expressiveness of React components.
+
+In essence, MDX allows developers to:
+
+- Write Markdown like usual (`#`, `##`, `**bold**`, etc.)
+- Import and use React components inside `.mdx` files
+- Include dynamic or interactive elements in documentation or blogs
+
+```jsx
+import Chart from './components/Chart';
+
+# My Dashboard
+
+Here's a dynamic chart:
+<Chart data={[1, 2, 3]} />
+```
+
+## 🚀 Why Use MDX?
+
+MDX shines in scenarios where you want content to be expressive, interactive, and component-driven. Some use cases include:
+
+- Technical blog posts with live React components
+- Developer documentation with code playgrounds
+- Custom-styled content blocks
+- Interactive tutorials and demos
+
+### Benefits
+
+- **Component-based content**: Use your existing components directly.
+- **Reusable content**: Share UI elements between docs and app.
+- **Full JavaScript power**: Add logic, fetch data, and render conditionally.
+
+## 🛠️ Getting Started
+
+To start using MDX, choose a compatible framework like Next.js, Astro, or Gatsby. Here's how you can set it up in **Next.js**:
+
+1. Install the required packages:
+
+```bash
+npm install @mdx-js/loader @mdx-js/react
+```
+
+2. Update your Next.js config (`next.config.js`):
+
+```js
+const withMDX = require('@next/mdx')();
+module.exports = withMDX({
+  pageExtensions: ['js', 'jsx', 'mdx']
+});
+```
+
+3. Create an `.mdx` file:
+
+```mdx
+---
+title: Hello MDX
+---
+
+# Welcome to MDX!
+
+<CustomButton>Click Me</CustomButton>
+```
+
+## 🔍 Example: Fetching Data
+
+You can even fetch data inside your MDX files:
+
+```js
+export async function getSource() {
+  const response = await fetch('https://api.example.com/data');
+  const data = await response.json();
+  return data;
+}
+```
+
+## 🧩 MDX Components Mapping
+
+To map custom components in MDX, wrap your MDX provider:
+
+```js
+import { MDXProvider } from '@mdx-js/react';
+import CodeBlock from './CodeBlock';
+
+const components = {
+  pre: CodeBlock,
+};
+
+<MDXProvider components={components}>
+  <MyMDXContent />
+</MDXProvider>
+```
+
+## ✅ Use Cases
+
+- Blog posts with interactive examples
+- Product documentation
+- Live code examples and demos
+- Tutorials with embedded widgets
+
+## 📦 Conclusion
+
+MDX is more than just Markdown—it’s an evolution that bridges content and components. By letting you embed JSX inside Markdown, MDX empowers developers to create highly dynamic, rich, and reusable content in a seamless and expressive way.
+
+Whether you're writing documentation, blogs, or landing pages, MDX can elevate your content by blending the best of Markdown and React.
+
+## 📚 Further Reading
+
+- [MDX Official Documentation](https://mdxjs.com/)
+- [Using MDX with Next.js](https://nextjs.org/docs/advanced-features/using-mdx)
+- [MDX GitHub Repository](https://github.com/mdx-js/mdx)
+
+---
+
+Thank you for reading! If you enjoyed this guide, share it with others or [connect with me on LinkedIn](https://www.linkedin.com/in/ayush-raj-50779024a/) for more tech insights ✌️
+

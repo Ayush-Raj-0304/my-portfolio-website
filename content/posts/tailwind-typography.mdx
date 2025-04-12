@@ -1,0 +1,122 @@
+---
+  title: Tailwind Typography Deep Dive
+  summary: Explore how the Tailwind Typography plugin enhances Markdown content, improves readability, and helps build beautifully styled prose in your Tailwind CSS projects.
+  author: 'Ayush Raj'
+  publishedAt: '2025-04-10'
+  image: '/images/tailwind-typography.jpg'
+---
+
+## 🖋️ What is Tailwind Typography?
+
+The **Tailwind Typography plugin**, also known as `@tailwindcss/typography`, is a utility plugin designed to provide beautiful default styles for HTML generated from Markdown or rich text editors. It’s perfect for blogs, documentation, and long-form content where typographic excellence matters.
+
+Unlike traditional utility classes, this plugin generates a **`prose`** class that applies a sensible set of typographic defaults for various HTML elements like headings, paragraphs, lists, blockquotes, tables, and more.
+
+---
+
+## 🧠 Why Use It?
+
+- 🧾 **Better Readability**: Optimized line height, font sizes, spacing, and indentation.
+- 🪄 **Beautiful by Default**: Styled elements like blockquotes, code blocks, tables, and links.
+- 🌙 **Dark Mode Friendly**: Automatically adjusts based on your theme.
+- 🔌 **Fully Customizable**: Extend or override styles with `theme.extend.typography` in your Tailwind config.
+
+---
+
+## ⚙️ Installation & Setup
+
+To use the plugin, install it via npm:
+
+```bash
+npm install -D @tailwindcss/typography
+```
+
+Then add it to your `tailwind.config.js`:
+
+```js
+// tailwind.config.js
+module.exports = {
+  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
+  theme: {
+    extend: {},
+  },
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
+}
+```
+
+---
+
+## ✍️ How to Use
+
+Just add the `prose` class to the element that wraps your content:
+
+```jsx
+<div className="prose">
+  <h1>My Markdown Content</h1>
+  <p>This text is beautifully styled by Tailwind Typography.</p>
+</div>
+```
+
+You can also use size modifiers:
+
+```html
+<div className="prose prose-lg"> ... </div>
+<div className="prose prose-sm"> ... </div>
+```
+
+Want dark mode support?
+
+```html
+<div className="prose dark:prose-invert"> ... </div>
+```
+
+---
+
+## 🎨 Customizing the Styles
+
+Tailwind Typography comes with smart defaults, but you can extend them in `tailwind.config.js`:
+
+```js
+module.exports = {
+  theme: {
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            color: '#333',
+            a: { color: '#4f46e5', '&:hover': { color: '#4338ca' } },
+            strong: { color: '#111' },
+          },
+        },
+      },
+    },
+  },
+}
+```
+
+---
+
+## 🧪 Example in MDX
+
+```mdx
+<div className="prose dark:prose-invert">
+  <h2>Getting Started</h2>
+  <p>Use Tailwind Typography to beautifully style long-form content in your blog or docs site.</p>
+  <blockquote>Tailwind makes styling Markdown enjoyable again.</blockquote>
+</div>
+```
+
+---
+
+## 📚 Further Reading
+
+- [Tailwind Typography Plugin](https://tailwindcss.com/docs/typography-plugin)
+- [Typography Customization Docs](https://tailwindcss.com/docs/typography-plugin#customizing)
+- [Tailwind Play Example](https://play.tailwindcss.com/)
+
+---
+
+Thank you for taking the time to read this post! If you found it informative, consider following me or connecting on [LinkedIn](https://www.linkedin.com/in/ayush-raj-50779024a/) ✌️ 
+
