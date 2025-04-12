@@ -7,14 +7,20 @@ import { ArrowLeftIcon } from 'lucide-react'
 import { notFound } from 'next/navigation'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 
+type PostPageProps = {
+  params: {
+    slug: string
+  }
+}
+
 export async function generateStaticParams() {
   const posts = await getPosts()
   const slugs = posts.map(post => ({ slug: post.slug }))
   return slugs
 }
 
-export default async function Post({ params }: { params: { slug: string } }) {
-  const { slug } =  params
+export default async function Post({ params }: PostPageProps) {
+  const { slug } = params
   const post = await getPost(slug)
 
   if (!post) {
