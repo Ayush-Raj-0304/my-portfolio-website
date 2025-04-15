@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import authorImage from '../../public/images/authors/me.jpg'
+import authorImage from '../../public/images/authors/myself2.jpg'
 
 export default function Intro() {
   return (
@@ -13,7 +13,7 @@ export default function Intro() {
       </div>
       <div className='relative animate-fade-in-right delay-200'>
         <Image
-          className='flex-1 rounded-lg grayscale'
+          className='flex-1 rounded-lg '
           src={authorImage}
           alt='Ayush Raj'
           width={175}
