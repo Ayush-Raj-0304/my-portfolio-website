@@ -7,8 +7,7 @@ export default function Intro() {
       <div className='mt-2 flex-1 md:mt-0 animate-fade-in-left delay-100'>
         <h1 className='title no-underline font-black text-3xl'>Hey, I&#39;m Ayush.</h1>
         <p className='mt-3 font-light text-muted-foreground'>
-          I&#39;m a full stack developer based in Delhi, India. I&#39;m
-          passionate about learning new technologies and problem solving.
+          Results-driven CSE student skilled in Problem Solving and Full-Stack development with NextJs,ReactJs ,TypeScript, Node.js, and MongoDB.
         </p>
       </div>
       <div className='relative animate-fade-in-right delay-200'>
